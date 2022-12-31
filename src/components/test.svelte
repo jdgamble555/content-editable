@@ -1,20 +1,13 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
 	export let source = `jon
 sup
 me`;
 
-	let lineNums: HTMLElement;
-
-	const addLines = (n: number) => {
-		lineNums.innerHTML = Array(n).fill('<span></span>').join('');
-	};
+	let numberOfLines = source.split('\n').length;
 
 	const KeyUp = (event: Event) => {
 		const textarea = event.target as HTMLInputElement;
-		const numberOfLines = textarea.value.split('\n').length;
-		addLines(numberOfLines);
+		numberOfLines = textarea.value.split('\n').length;
 	};
 
 	const KeyDown = (event: Event) => {
@@ -26,21 +19,20 @@ me`;
 
 			if (start && end) {
 				textarea.value = textarea.value.substring(0, start) + '\t' + textarea.value.substring(end);
+				event.preventDefault();
 			}
 		}
 	};
-
-	onMount(() => {
-		addLines(source.split('\n').length);
-	});
 </script>
 
 <center>
 	<div class="editor">
-		<div bind:this={lineNums} class="line-numbers">
-			<span />
+		<div class="line-numbers">
+			{#each Array(numberOfLines) as _}
+				<span />
+			{/each}
 		</div>
-		<textarea on:keyup={KeyUp} on:keydown|preventDefault={KeyDown} value={source} rows="15" />
+		<textarea on:keyup={KeyUp} on:keydown={KeyDown} value={source} rows="15" />
 	</div>
 </center>
 
