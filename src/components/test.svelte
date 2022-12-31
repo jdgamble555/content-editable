@@ -30,10 +30,10 @@ fixin to do sumthin good`;
 	<div class="editor">
 		<div class="line-numbers">
 			{#each Array(numberOfLines) as _}
-				<span />
+				<span class="new-line" />
 			{/each}
 		</div>
-		<textarea on:keyup={KeyUp} on:keydown={KeyDown} value={source} rows="15" />
+		<textarea class="text-content" on:keyup={KeyUp} on:keydown={KeyDown} value={source} rows="15" />
 	</div>
 </center>
 
@@ -53,17 +53,17 @@ fixin to do sumthin good`;
 		text-align: right;
 	}
 
-	.line-numbers span {
+	.line-numbers .new-line {
 		counter-increment: linenumber;
 	}
 
-	.line-numbers span::before {
+	.line-numbers .new-line::before {
 		content: counter(linenumber);
 		display: block;
 		color: #506882 !important;
 	}
 
-	textarea {
+	.text-content {
 		line-height: 21px;
 		overflow-y: hidden;
 		padding: 0;
