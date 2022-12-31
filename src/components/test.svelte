@@ -1,7 +1,8 @@
 <script lang="ts">
 	export let source = `jon
-sup
-me`;
+sup there is some other text here that I want to go across the lines and not word wrap another line etc boy!
+me
+fixin to do sumthin good`;
 
 	let numberOfLines = source.split('\n').length;
 
