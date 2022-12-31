@@ -31,7 +31,7 @@ me`;
 	};
 
 	onMount(() => {
-		//addLines(source.split('\n').length);
+		addLines(source.split('\n').length);
 	});
 </script>
 
